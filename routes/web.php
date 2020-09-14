@@ -28,3 +28,6 @@ Route::prefix('admin')
         ->group(function() {
             Route::resource('posts', 'PostController');
         });
+
+Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
