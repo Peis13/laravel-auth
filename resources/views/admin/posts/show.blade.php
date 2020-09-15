@@ -15,14 +15,17 @@
                     </ul>
                 </div>
 
-                <div>
-                    <img src="{{ $post->image_path }}" alt="{{ $post->title }}">
-                </div>
+                @if (!empty($post->image_path))
+                    <div>
+                        <img src="{{ asset('storage') . '/' . $post->image_path }}" alt="{{ $post->title }}">
+                    </div>
+                @endif
 
                 <div>
                     <p>{{ $post->content }}</p>
                 </div>
                 <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">torna alla bacheca</a>
+                <a class="btn btn-warning" href="{{ route('admin.posts.edit', $post) }}">modifica post</a>
             </div>
         </div>
     </div>

@@ -6,9 +6,11 @@
             <div class="col-12">
                 <h2>post: {{ $post->title }}</h2>
 
-                <div>
-                    <img src="{{ $post->image_path }}" alt="{{ $post->title }}">
-                </div>
+                @if (!empty($post->image_path))
+                    <div>
+                        <img src="{{ asset('storage') . '/' . $post->image_path }}" alt="{{ $post->title }}">
+                    </div>
+                @endif
 
                 <div>
                     <p>{{ $post->content }}</p>

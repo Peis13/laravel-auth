@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -41,7 +41,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:500',
+            'image_path' => 'image',
+        ]);
+        $data = $request->all();
+
+        $new_post = new Post();
+        $new_post->user_id = Auth::id();
+        $new_post->title = $data['title'];
+        $new_post->content = $data['content'];
+
+        if (isset($data['image_path'])) {
+            $path = $request->file('image_path')->store('images', 'public');
+            $new_post->image_path = $path;
+        }
+        $new_post->save();
+
+        return redirect()->route('admin.posts.show', $new_post);
     }
 
     /**
@@ -61,9 +79,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -73,9 +91,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:500',
+            'image_path' => 'image',
+        ]);
+        $data = $request->all();
+
+        if (isset($data['image_path'])) {
+            $path = $request->file('image_path')->store('images', 'public');
+            $data['image_path'] = $path;
+        }
+        $updated_post = $post->update($data);
+
+        if ($updated_post) {
+            return redirect()->route('admin.posts.show', $post);
+        }
     }
 
     /**
