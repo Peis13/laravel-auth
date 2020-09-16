@@ -66,6 +66,9 @@
                                     </form>
                                 </div>
                             </li>
+                            <li>
+                                <a class="btn btn-success" href="{{ route('admin.posts.create') }}">crea nuovo post</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>

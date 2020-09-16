@@ -10899,3 +10899,44 @@ a.text-dark:focus {
   }
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+img {
+  width: 100%;
+}
+
+main .index .lista-posts .post {
+  margin: 20px 0;
+  border: 2px solid #6574cd;
+}
+
+main .index .lista-posts .post .link {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+main .index .lista-posts .post .link .post-img {
+  width: 200px;
+  height: 120px;
+  margin-right: 20px;
+}
+
+main .index .lista-posts .post .link .post-img img {
+  height: 100%;
+}
+
+main .show .post-img {
+  width: 500px;
+  margin: 30px 0;
+  height: 300px;
+}
+
+main .show .post-img img {
+  height: 100%;
+}
+
